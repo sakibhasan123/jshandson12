@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>closures</title>
+</head>
+
+<body>
+
+    <h1>Closures</h1>
+    <hr>
+
+    <div>Q1.
+        <pre>
+    "function counter(){
+        var counter = 0;
+        function IncreaseCounter() {
+            return counter += 1;
+        };
+        
+    return IncreaseCounter;
+    }
+        
+    var counter = counter();
+    alert(counter());
+    alert(counter());
+    alert(counter());
+    alert(counter());"
+    </pre>
+    </div>
+    <div>
+        →[Output:1,2,3,4]
+    </div>
+    <div>
+        →Reason: The value of counter will Increase with respect to how many times it is called, because
+        the counter function, is getting updated as soon as it is called another time.
+    </div>
+    <hr>
+
+
+    <div>
+        Q2.
+        <pre>
+    "let count = 0;
+        (function () {
+        if (count === 0) {
+            let count = 1;
+        console.log(count); // What is logged?
+            }
+        console.log(count); // What is logged?
+    })();"
+        </pre>
+    </div>
+    <div>
+        →[Output:1,0]
+    </div>
+    <div>
+        →Reason: when console.log(count) was count first time, there it matched the if condition, and when it was
+        called
+        second time it searched the value which was out of the function scope so it accessed the let variable of
+        count i.e 0.
+    </div>
+    <hr>
+
+    <div>
+        Q3.
+        <pre>
+        "for (var i = 0; i &lt; 3; i++) {
+            setTimeout(function log() {
+             console.log(i); // What is logged?
+        }, 1000);
+            }"
+        </pre>
+    </div>
+    <div>
+        →[Output:3]
+    </div>
+    <div>
+        →Reason: While running the code in setTimeout. The function will be called from 0 index which
+        will fullfill the condition less than 3. So it will be printed 3
+    </div>
+    <hr>
+
+    <div>
+        Q4.Write a code to calculate area of a rectangle using inner function. In this case outer function should
+        accept parameter length and inner function should accept parameter breadth.
+    </div>
+    <div>
+        →
+        <pre>
+    function Abc(L){
+        function Def(B){
+            return (L*B)
+    }
+        return B
+    }
+    console.log('Area of rectangle' +" "+ (10*5) )
+        </pre>
+    </div>
+    <div>
+        →[Output:50]
+    </div>
+    <hr>
+
+    <div>
+        Q5.Take a variable in outer function and create an inner function to increase the counter every time it is
+        called
+    </div>
+    <div>
+        →
+        <pre>
+    function counter(){
+        var counter = 0;
+    function IncreaseCounter() {
+        return counter += 1;
+    };
+    
+    return IncreaseCounter;
+    }
+    var counter = counter();
+    console.log(counter());
+    console.log(counter());
+    console.log(counter());
+    console.log(counter());"
+</pre>
+    </div>
+    <hr>
+
+    <div>
+        Q6.
+        <pre>
+    "Print Output
+
+    var a = 12;
+    (function () {
+    alert(a);
+    })();"
+    </pre>
+    </div>
+    <div>
+        →[Output:12] It will show as a popup.
+    </div>
+
+    <hr>
+
+    <div>
+        Q7.
+        <pre>
+    var a = 10;
+    var x = (function () {
+  var a = 12;
+  return function () {
+    alert(a);
+  };
+})();
+x();
+</pre>
+    </div>
+    <div>
+        →[Output:12] It will show as a popup.(var a=10 will be updated as var a=12, because var is a global
+        scope)
+    </div>
+    <hr>
+
+    <div>
+        Q8.
+        <pre>
+        "var globalVar = "xyz"";
+
+    (function outerFunc(outerArg) {
+    var outerVar = 'a';
+    
+    (function innerFunc(innerArg) {
+    var innerVar = 'b';
+    
+    console.log(
+        ""outerArg = "" + outerArg + ""\n"" +
+        ""innerArg = "" + innerArg + ""\n"" +
+        ""outerVar = "" + outerVar + ""\n"" +
+        ""innerVar = "" + innerVar + ""\n"" +
+        ""globalVar = "" + globalVar);
+        })(456);
+    })(123);"
+    </pre>
+    </div>
+    <div>
+        →[Output:<br>
+        1. outerArg =123 <br>
+        2. innerArg= 456 <br>
+        3. outervar= a <br>
+        4. innervar= b <br>
+        5. globalVar= xyz]
+    </div>
+
+    <div>
+        Reason: Every variable and function is assigned with their respected value
+    </div>
+</body>
+
+</html>
